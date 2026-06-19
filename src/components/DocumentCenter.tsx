@@ -29,13 +29,13 @@ function DocumentFeatureCard({ doc, index, onClick }: { doc: DocumentDef, index:
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       className="group relative"
     >
-      <div 
+      <div
         onClick={onClick}
         className="relative z-10 cursor-pointer overflow-hidden p-8 sm:p-10 rounded-[32px] bg-paper-50/80 dark:bg-paper-50/[0.02] border border-ink-900/10 dark:border-paper-50/8 backdrop-blur-xl transition-all duration-500 hover:border-seal-400/50 dark:hover:border-seal-400/40 shadow-sm hover:shadow-xl group-hover:-translate-y-1"
       >
         {/* Layered background visual */}
         <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-64 h-64 bg-seal-400/5 dark:bg-seal-400/10 rounded-full blur-[80px] group-hover:scale-125 transition-transform duration-700" />
-        
+
         <div className="relative z-20 flex flex-col sm:flex-row sm:items-start gap-8">
           {/* Left: Icon & Badge */}
           <div className="shrink-0">
@@ -53,16 +53,16 @@ function DocumentFeatureCard({ doc, index, onClick }: { doc: DocumentDef, index:
           {/* Right: Content */}
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-4">
-               <span className="h-px w-8 bg-seal-400/40" />
-               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-ink-400 dark:text-paper-400/50">
-                 Document {index + 1}
-               </span>
+              <span className="h-px w-8 bg-seal-400/40" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-ink-400 dark:text-paper-400/50">
+                Document {index + 1}
+              </span>
             </div>
-            
+
             <h3 className="font-serif-am text-2xl sm:text-3xl text-ink-900 dark:text-paper-50 mb-4 leading-tight group-hover:text-gradient-gold transition-all duration-300">
               {title}
             </h3>
-            
+
             <p className="text-base text-ink-500 dark:text-paper-200/50 leading-relaxed max-w-lg mb-8">
               {desc}
             </p>
@@ -72,7 +72,7 @@ function DocumentFeatureCard({ doc, index, onClick }: { doc: DocumentDef, index:
                 {t.documents.previewBtn}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </span>
-              
+
               <div className="flex items-center gap-1.5 text-xs text-ink-400 dark:text-paper-400/40 font-medium">
                 <FileText size={14} />
                 Fillable Document
@@ -100,7 +100,7 @@ export default function DocumentCenter() {
       {/* Background Cinematic Elements */}
       <div className="orb orb-gold w-[700px] h-[700px] -right-40 top-40 opacity-[0.05] dark:opacity-[0.08] blur-[140px]" />
       <div className="orb orb-teal w-[600px] h-[600px] -left-20 bottom-10 opacity-[0.04] dark:opacity-[0.06] blur-[120px]" />
-      
+
       {/* Grid pattern */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] dark:opacity-[0.05] pointer-events-none" />
 
@@ -108,7 +108,7 @@ export default function DocumentCenter() {
         {/* Header section with specialized reveal */}
         <div className="max-w-3xl mb-24 relative">
           <div className="absolute -left-12 top-0 h-full w-1 bg-gradient-to-b from-seal-400 to-transparent opacity-30" />
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -116,8 +116,8 @@ export default function DocumentCenter() {
             transition={{ duration: 0.8 }}
           >
             <span className="section-eyebrow mb-6 inline-block">{t.documents.eyebrow}</span>
-          </motion.h2>
-          
+          </motion.div>
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -127,7 +127,7 @@ export default function DocumentCenter() {
           >
             {t.documents.title}
           </motion.h2>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -142,11 +142,11 @@ export default function DocumentCenter() {
         {/* One-by-one list for maximum focus and premium feel */}
         <div className="flex flex-col gap-8 sm:gap-10">
           {documents.map((doc, i) => (
-            <DocumentFeatureCard 
-              key={doc.id} 
-              doc={doc} 
-              index={i} 
-              onClick={() => setActive(doc)} 
+            <DocumentFeatureCard
+              key={doc.id}
+              doc={doc}
+              index={i}
+              onClick={() => setActive(doc)}
             />
           ))}
         </div>
@@ -169,7 +169,7 @@ export default function DocumentCenter() {
           <button className="relative z-10 px-8 py-4 rounded-full bg-seal-400 text-ink-950 font-bold hover:bg-seal-300 transition-colors shadow-seal hover:shadow-seal-lg flex items-center gap-2 group-hover:scale-105 duration-300">
             Request Document <Download size={18} />
           </button>
-          
+
           {/* Animated decorative orb for CTA */}
           <div className="absolute right-0 bottom-0 translate-y-1/2 translate-x-1/4 w-64 h-64 bg-seal-400/20 rounded-full blur-[80px]" />
         </motion.div>

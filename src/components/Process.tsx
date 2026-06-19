@@ -31,11 +31,12 @@ function ProcessStep({ step, index, isLeft, lang }: { step: any, index: number, 
           </h3>
           
           <div className={`flex flex-wrap items-center gap-3 ${isLeft ? 'sm:justify-end' : 'sm:justify-start'}`}>
-            {step.actors.map((actor: string, i: number) => (
-              <span key={i} className="px-3 py-1.5 rounded-lg bg-ink-900/5 dark:bg-paper-50/5 border border-ink-900/10 dark:border-paper-50/10 text-[11px] font-bold text-ink-500 dark:text-paper-400">
-                {actor}
-              </span>
-            ))}
+            <span className="px-3 py-1.5 rounded-lg bg-ink-900/5 dark:bg-paper-50/5 border border-ink-900/10 dark:border-paper-50/10 text-[11px] font-bold text-ink-500 dark:text-paper-400">
+              {lang === "am" ? step.ownerAm : step.ownerEn}
+            </span>
+            <span className="px-3 py-1.5 rounded-lg bg-seal-400/10 border border-seal-400/20 text-[11px] font-bold text-seal-600 dark:text-seal-300">
+              {step.dayAm}
+            </span>
           </div>
         </div>
       </motion.div>

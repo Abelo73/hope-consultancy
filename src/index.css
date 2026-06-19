@@ -102,11 +102,18 @@ body {
 
 /* ─── Gradient Text ─────────────────────────────────────────────── */
 .text-gradient-gold {
-  background: linear-gradient(135deg, #FFD98A, #F5A623 40%, #E08A0E);
+  background: linear-gradient(135deg, #FFD98A, #F5A623 30%, #E08A0E, #F5A623 70%, #FFD98A);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: shimmer-gold 6s linear infinite;
 }
+
+@keyframes shimmer-gold {
+  to { background-position: 200% center; }
+}
+
 .text-gradient-teal {
   background: linear-gradient(135deg, #6AAFA1, #3D8C80);
   -webkit-background-clip: text;
