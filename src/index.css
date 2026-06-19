@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties ───────────────────────────────────── */
+:root {
+  --gradient-gold: linear-gradient(135deg, #FFD98A, #F5A623, #E08A0E);
+  --gradient-teal: linear-gradient(135deg, #6AAFA1, #3D8C80, #2A6B60);
+  --gradient-hero: linear-gradient(135deg, rgba(61,140,128,0.15), rgba(245,166,35,0.12));
+}
+
+/* ─── Base ─────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans Ethiopic', 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* ─── Selection ────────────────────────────────────────────────── */
+::selection {
+  background-color: rgba(245, 166, 35, 0.3);
+  color: inherit;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar         { width: 6px; height: 6px; }
+::-webkit-scrollbar-track   { background: transparent; }
+::-webkit-scrollbar-thumb   { background: rgba(61,140,128,0.4); border-radius: 9999px; }
+.dark ::-webkit-scrollbar-thumb { background: rgba(245,166,35,0.35); }
+
+/* ─── Focus ─────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #F5A623;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─── Accessibility ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Typography Utilities ──────────────────────────────────────── */
+.font-serif-am {
+  font-family: 'Noto Serif Ethiopic', 'Cormorant Garamond', serif;
+}
+
+/* ─── Grain Overlay ─────────────────────────────────────────────── */
+.bg-grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ─── Hero Backgrounds ──────────────────────────────────────────── */
+.mesh-bg-light {
+  background:
+    radial-gradient(ellipse 80% 60% at 8%  0%,  rgba(61,140,128,0.20) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 92% 15%, rgba(245,166,35,0.16) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 70% at 50% 100%,rgba(61,140,128,0.10) 0%, transparent 60%),
+    #FAF8F2;
+}
+.dark .mesh-bg-light,
+.mesh-bg-dark {
+  background:
+    radial-gradient(ellipse 80% 60% at 8%  0%,  rgba(61,140,128,0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 92% 15%, rgba(245,166,35,0.20) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 70% at 50% 100%,rgba(61,140,128,0.14) 0%, transparent 60%),
+    #080C0B;
+}
+
+/* ─── Glassmorphism ─────────────────────────────────────────────── */
+.glass-light {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+.glass-dark {
+  background: rgba(8,12,11,0.80);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+/* ─── Gradient Text ─────────────────────────────────────────────── */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FFD98A, #F5A623 40%, #E08A0E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-teal {
+  background: linear-gradient(135deg, #6AAFA1, #3D8C80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Shimmer Button ─────────────────────────────────────────────── */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+.btn-shimmer:hover::after {
+  left: 160%;
+}
+
+/* ─── Card Hover Glow ────────────────────────────────────────────── */
+.card-hover-glow {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1),
+              box-shadow 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.card-hover-glow:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px -15px rgba(245,166,35,0.25),
+              0 4px 16px rgba(9,31,27,0.12);
+}
+.dark .card-hover-glow:hover {
+  box-shadow: 0 20px 60px -15px rgba(245,166,35,0.20),
+              0 4px 20px rgba(0,0,0,0.5);
+}
+
+/* ─── Scroll Animation Base States ───────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+              transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+              transform 0.75s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+              transform 0.75s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+              transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger delays */
+.delay-100  { transition-delay: 100ms; }
+.delay-150  { transition-delay: 150ms; }
+.delay-200  { transition-delay: 200ms; }
+.delay-250  { transition-delay: 250ms; }
+.delay-300  { transition-delay: 300ms; }
+.delay-400  { transition-delay: 400ms; }
+.delay-500  { transition-delay: 500ms; }
+.delay-600  { transition-delay: 600ms; }
+.delay-700  { transition-delay: 700ms; }
+
+/* ─── Animated Gradient Border ───────────────────────────────────── */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(245,166,35,0.6), rgba(61,140,128,0.6), rgba(245,166,35,0.4));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─── Floating Orb ───────────────────────────────────────────────── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.orb-teal {
+  background: radial-gradient(circle, rgba(61,140,128,0.5), transparent 70%);
+}
+.orb-gold {
+  background: radial-gradient(circle, rgba(245,166,35,0.4), transparent 70%);
+}
+
+/* ─── Section Number Accent ──────────────────────────────────────── */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #F5A623;
+}
+.dark .section-eyebrow { color: #FFD98A; }
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+/* ─── Input Focus Ring ───────────────────────────────────────────── */
+.input-field {
+  width: 100%;
+  border-radius: 12px;
+  border: 1.5px solid rgba(9,31,27,0.12);
+  background: rgba(255,255,255,0.8);
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #091F1B;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  outline: none;
+}
+.input-field::placeholder { color: rgba(9,31,27,0.35); }
+.input-field:focus {
+  border-color: #F5A623;
+  box-shadow: 0 0 0 3px rgba(245,166,35,0.15);
+  background: #fff;
+}
+.dark .input-field {
+  border-color: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: #FAF8F2;
+}
+.dark .input-field::placeholder { color: rgba(250,248,242,0.35); }
+.dark .input-field:focus {
+  border-color: #F5A623;
+  box-shadow: 0 0 0 3px rgba(245,166,35,0.18);
+  background: rgba(255,255,255,0.08);
+}
+
+/* ─── Timeline Line Animation ────────────────────────────────────── */
+@keyframes growDown {
+  from { transform: scaleY(0); transform-origin: top; }
+  to   { transform: scaleY(1); transform-origin: top; }
+}
+.timeline-line { transform-origin: top; }
+.timeline-line.visible { animation: growDown 1.4s cubic-bezier(0.16,1,0.3,1) forwards; }
+
+/* ─── Marquee ────────────────────────────────────────────────────── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
