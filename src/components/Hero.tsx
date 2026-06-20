@@ -15,24 +15,19 @@ import {
   useEffect,
   useRef,
   useState,
-  useCallback,
   Suspense,
-  lazy,
+  useCallback,
 } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, type Variants } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCountUp } from "react-countup";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   RoundedBox,
-  MeshTransmissionMaterial,
   Float,
   Environment,
   ContactShadows,
-  MeshWobbleMaterial,
-  Text3D,
-  Center,
   Sparkles,
 } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
@@ -250,13 +245,13 @@ function AnimatedBackground({
         animate={{
           background: isDark
             ? [
-                "radial-gradient(ellipse 80% 60% at 10% 10%, rgba(61,140,128,0.30) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 88% 20%, rgba(245,166,35,0.22) 0%, transparent 55%), radial-gradient(ellipse 70% 70% at 50% 100%, rgba(61,140,128,0.15) 0%, transparent 65%), #080C0B",
-                "radial-gradient(ellipse 80% 60% at 20% 20%, rgba(61,140,128,0.28) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 30%, rgba(245,166,35,0.25) 0%, transparent 55%), radial-gradient(ellipse 70% 70% at 40% 100%, rgba(61,140,128,0.12) 0%, transparent 65%), #080C0B",
-              ]
+              "radial-gradient(ellipse 80% 60% at 10% 10%, rgba(61,140,128,0.30) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 88% 20%, rgba(245,166,35,0.22) 0%, transparent 55%), radial-gradient(ellipse 70% 70% at 50% 100%, rgba(61,140,128,0.15) 0%, transparent 65%), #080C0B",
+              "radial-gradient(ellipse 80% 60% at 20% 20%, rgba(61,140,128,0.28) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 30%, rgba(245,166,35,0.25) 0%, transparent 55%), radial-gradient(ellipse 70% 70% at 40% 100%, rgba(61,140,128,0.12) 0%, transparent 65%), #080C0B",
+            ]
             : [
-                "radial-gradient(ellipse 80% 60% at 10% 10%, rgba(61,140,128,0.18) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 88% 20%, rgba(245,166,35,0.14) 0%, transparent 55%), #FAF8F2",
-                "radial-gradient(ellipse 80% 60% at 20% 20%, rgba(61,140,128,0.16) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 30%, rgba(245,166,35,0.18) 0%, transparent 55%), #FAF8F2",
-              ],
+              "radial-gradient(ellipse 80% 60% at 10% 10%, rgba(61,140,128,0.18) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 88% 20%, rgba(245,166,35,0.14) 0%, transparent 55%), #FAF8F2",
+              "radial-gradient(ellipse 80% 60% at 20% 20%, rgba(61,140,128,0.16) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 30%, rgba(245,166,35,0.18) 0%, transparent 55%), #FAF8F2",
+            ],
         }}
         transition={{ duration: 5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
       />
@@ -277,8 +272,8 @@ function AnimatedBackground({
       {/* Floating blobs */}
       {[
         { x: "-10%", y: "-15%", size: 480, color: "rgba(61,140,128,0.18)", delay: 0 },
-        { x: "75%",  y: "10%",  size: 360, color: "rgba(245,166,35,0.14)", delay: 2 },
-        { x: "40%",  y: "75%",  size: 300, color: "rgba(61,140,128,0.12)", delay: 4 },
+        { x: "75%", y: "10%", size: 360, color: "rgba(245,166,35,0.14)", delay: 2 },
+        { x: "40%", y: "75%", size: 300, color: "rgba(61,140,128,0.12)", delay: 4 },
       ].map((blob, i) => (
         <motion.div
           key={i}
@@ -354,23 +349,24 @@ const containerVariants = {
   visible: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
 };
 
-const wordVariants = {
+const wordVariants: Variants = {
   hidden: { opacity: 0, y: 32, filter: "blur(8px)" },
   visible: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] as any },
   },
 };
 
-const fadeUp = {
+
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24, filter: "blur(4px)" },
   visible: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.7, ease: "easeOut" },
   },
 };
 
@@ -393,22 +389,21 @@ function SplitHeadline({ text }: { text: string }) {
             <motion.span
               key={wi}
               variants={wordVariants}
-              className={`inline-block mr-[0.28em] ${
-                li === 1 && wi === line.split(" ").length - 1
-                  ? "relative"
-                  : ""
-              }`}
+              className={`inline-block mr-[0.28em] ${li === 1 && wi === line.split(" ").length - 1
+                ? "relative"
+                : ""
+                }`}
               style={
                 li === 1 && wi === line.split(" ").length - 1
                   ? {
-                      background:
-                        "linear-gradient(100deg, #FFD98A 0%, #F5A623 38%, #E08A0E 58%, #F5A623 78%, #FFD98A 100%)",
-                      backgroundSize: "200% auto",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                      animation: "shimmerText 3.5s linear 1.2s infinite",
-                    }
+                    background:
+                      "linear-gradient(100deg, #FFD98A 0%, #F5A623 38%, #E08A0E 58%, #F5A623 78%, #FFD98A 100%)",
+                    backgroundSize: "200% auto",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    animation: "shimmerText 3.5s linear 1.2s infinite",
+                  }
                   : {}
               }
             >
@@ -452,11 +447,10 @@ function MagneticButton({
       onMouseLeave={onLeave}
       whileHover={{ scale: 1.04 }}
       whileTap={{ scale: 0.97 }}
-      className={`relative overflow-hidden inline-flex items-center gap-2.5 px-7 py-4 rounded-full font-semibold transition-shadow duration-300 ${
-        primary
-          ? "bg-ink-800 dark:bg-seal-400 text-paper-50 dark:text-ink-950 shadow-seal hover:shadow-seal-lg"
-          : "border-2 border-ink-900/15 dark:border-paper-50/22 text-ink-800 dark:text-paper-100 hover:border-seal-400/50 dark:hover:border-seal-400/40"
-      }`}
+      className={`relative overflow-hidden inline-flex items-center gap-2.5 px-7 py-4 rounded-full font-semibold transition-shadow duration-300 ${primary
+        ? "bg-ink-800 dark:bg-seal-400 text-paper-50 dark:text-ink-950 shadow-seal hover:shadow-seal-lg"
+        : "border-2 border-ink-900/15 dark:border-paper-50/22 text-ink-800 dark:text-paper-100 hover:border-seal-400/50 dark:hover:border-seal-400/40"
+        }`}
     >
       {/* Ripples */}
       {ripples.map((rp) => (
@@ -534,8 +528,8 @@ function StatItem({
   label: string;
   delay: number;
 }) {
-  const countRef = useRef<HTMLSpanElement>(null);
-  
+  const countRef = useRef<any>(null);
+
   // We initialize the hook, it will handle scroll spying and delay automatically
   useCountUp({
     ref: countRef,
@@ -570,7 +564,6 @@ export default function Hero() {
   const isDark = theme === "dark";
 
   const sectionRef = useRef<HTMLElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
   const canvasWrapRef = useRef<HTMLDivElement>(null);
 
   // Raw mouse position [-1, 1]

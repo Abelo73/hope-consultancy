@@ -8,7 +8,7 @@ import { useCountUp } from "react-countup";
    ANIMATED STAT ITEM
 ═══════════════════════════════════════════════════════════════════ */
 function AboutStat({ n, suffix, l, delay, Icon }: { n: number, suffix: string, l: string, delay: number, Icon: any }) {
-  const countRef = useRef<HTMLSpanElement>(null);
+  const countRef = useRef<any>(null);
   
   useCountUp({
     ref: countRef,
