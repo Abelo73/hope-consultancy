@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { ClipboardList, Scale, Flag, Grid3x3, ArrowRight, FileText, Download } from "lucide-react";
-import { motion, AnimatePresence, useScroll } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { documents, type DocumentDef } from "../data/documents";
 import { useLang } from "../context/LangContext";
 import DocumentModal from "./DocumentModal";

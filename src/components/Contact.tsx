@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { 
   Globe, Video, Send, Share2, Phone, Mail, 
   ShieldCheck, CheckCircle2, ArrowRight, Loader2, Sparkles 
