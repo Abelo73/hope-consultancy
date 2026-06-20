@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import {
   ShoppingCart, Building2, Megaphone, Users, TrendingUp, UserCog,
   Landmark, Lightbulb, Cpu, MessageCircle, FileBarChart, Wallet,
@@ -16,7 +16,7 @@ const icons = [
 /* ═══════════════════════════════════════════════════════════════════
    INTERACTIVE 3D CARD
 ═══════════════════════════════════════════════════════════════════ */
-function InteractiveServiceCard({ item, index, Icon }: { item: any, index: number, Icon: any }) {
+function InteractiveServiceCard({ item, index, Icon, t }: { item: any, index: number, Icon: any, t: any }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   // Motion values for tilt
@@ -102,7 +102,7 @@ function InteractiveServiceCard({ item, index, Icon }: { item: any, index: numbe
         {isPlacement && (
           <div className="mt-5 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-ink-900 bg-paper-50 px-3 py-1.5 rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-            Premium Placement
+            {t.services.premiumBadge}
           </div>
         )}
       </div>
@@ -169,6 +169,7 @@ export default function Services() {
               item={item}
               index={i}
               Icon={icons[i % icons.length]}
+              t={t}
             />
           ))}
 
@@ -182,15 +183,15 @@ export default function Services() {
           >
             <div className="relative z-10">
               <h4 className="text-2xl font-serif-am text-paper-50 dark:text-ink-950 mb-4">
-                Need custom training or consultancy?
+                {t.services.ctaTitle}
               </h4>
               <p className="text-paper-50/60 dark:text-ink-950/60 text-sm">
-                We tailor our expertise to your specific institutional needs and regional requirements.
+                {t.services.ctaDesc}
               </p>
             </div>
 
             <button className="relative z-10 mt-6 self-start px-6 py-3 rounded-full bg-paper-50 dark:bg-ink-900 text-ink-900 dark:text-paper-50 font-bold text-sm hover:scale-105 transition-transform">
-              Contact Expert
+              {t.services.ctaBtn}
             </button>
 
             {/* Background dynamic orb for this specific card */}

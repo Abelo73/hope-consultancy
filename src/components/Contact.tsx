@@ -108,7 +108,7 @@ export default function Contact() {
                   <div className="group/row">
                     <div className="text-[10px] font-bold uppercase tracking-widest text-paper-50/40 mb-3 flex items-center gap-2">
                        <div className="w-1 h-1 rounded-full bg-seal-400" />
-                       Direct Connect
+                       {t.contact.directConnect}
                     </div>
                     <div className="flex flex-col gap-4">
                       <a href={`tel:${contactInfo.mobile1}`} className="text-2xl sm:text-3xl font-serif-am text-paper-50 hover:text-seal-400 transition-colors flex items-center gap-3">
@@ -125,7 +125,7 @@ export default function Contact() {
                   <div className="group/row">
                     <div className="text-[10px] font-bold uppercase tracking-widest text-paper-50/40 mb-3 flex items-center gap-2">
                        <div className="w-1 h-1 rounded-full bg-teal-500" />
-                       Digital Correspondence
+                       {t.contact.digitalCorrespondence}
                     </div>
                     <a href={`mailto:${contactInfo.email}`} className="text-2xl sm:text-3xl font-serif-am text-paper-50 hover:text-teal-400 transition-colors flex items-center gap-3 break-all">
                        <Mail size={20} className="text-teal-500/50" />
@@ -248,7 +248,7 @@ export default function Contact() {
                        onClick={() => setSent(false)}
                        className="text-sm font-bold text-seal-600 dark:text-seal-400 hover:underline flex items-center gap-2"
                      >
-                        <Sparkles size={16} /> Send another message
+                        <Sparkles size={16} /> {t.contact.anotherMsg}
                      </button>
                    </motion.div>
                  )}
@@ -259,7 +259,7 @@ export default function Contact() {
             </div>
             
             <p className="mt-8 text-center text-xs text-ink-400 dark:text-paper-400/40 font-medium">
-               Estimated Response Time: <span className="text-seal-600 dark:text-seal-400">Within 24 Hours</span>
+               {t.contact.responseTime}: <span className="text-seal-600 dark:text-seal-400">{t.contact.responseValue}</span>
             </p>
           </motion.div>
         </div>

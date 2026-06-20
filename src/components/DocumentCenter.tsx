@@ -55,7 +55,7 @@ function DocumentFeatureCard({ doc, index, onClick }: { doc: DocumentDef, index:
             <div className="flex items-center gap-3 mb-4">
               <span className="h-px w-8 bg-seal-400/40" />
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-ink-400 dark:text-paper-400/50">
-                Document {index + 1}
+                {t.documents.docLabel} {index + 1}
               </span>
             </div>
 
@@ -75,7 +75,7 @@ function DocumentFeatureCard({ doc, index, onClick }: { doc: DocumentDef, index:
 
               <div className="flex items-center gap-1.5 text-xs text-ink-400 dark:text-paper-400/40 font-medium">
                 <FileText size={14} />
-                Fillable Document
+                {t.documents.fillable}
               </div>
             </div>
           </div>
@@ -160,14 +160,14 @@ export default function DocumentCenter() {
         >
           <div className="relative z-10 text-center md:text-left">
             <h4 className="text-2xl sm:text-3xl font-serif-am text-paper-50 mb-3">
-              Don't see the form you need?
+              {t.documents.notFoundTitle}
             </h4>
             <p className="text-paper-50/60 max-w-md">
-              We update our document center weekly. Contact us for custom format requests or specific regional compliance forms.
+              {t.documents.notFoundDesc}
             </p>
           </div>
           <button className="relative z-10 px-8 py-4 rounded-full bg-seal-400 text-ink-950 font-bold hover:bg-seal-300 transition-colors shadow-seal hover:shadow-seal-lg flex items-center gap-2 group-hover:scale-105 duration-300">
-            Request Document <Download size={18} />
+            {t.documents.requestBtn} <Download size={18} />
           </button>
 
           {/* Animated decorative orb for CTA */}

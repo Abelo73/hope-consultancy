@@ -1,12 +1,12 @@
 import { useRef } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { processSteps } from "../data/documents";
 import { useLang } from "../context/LangContext";
 
 /* ═══════════════════════════════════════════════════════════════════
    STEP CARD
 ═══════════════════════════════════════════════════════════════════ */
-function ProcessStep({ step, index, isLeft, lang }: { step: any, index: number, isLeft: boolean, lang: string }) {
+function ProcessStep({ step, index, isLeft, lang, t }: { step: any, index: number, isLeft: boolean, lang: string, t: any }) {
   return (
     <div className={`relative flex flex-col sm:flex-row items-center gap-8 ${isLeft ? 'sm:flex-row' : 'sm:flex-row-reverse'} w-full`}>
       {/* Content Side */}
@@ -21,7 +21,7 @@ function ProcessStep({ step, index, isLeft, lang }: { step: any, index: number, 
           <div className="inline-flex items-center gap-2 mb-4">
              {!isLeft && <div className="h-px w-6 bg-seal-400" />}
              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-seal-500 dark:text-seal-400">
-               Milestone {index + 1}
+               {t.process.milestone} {index + 1}
              </span>
              {isLeft && <div className="h-px w-6 bg-seal-400" />}
           </div>
@@ -143,6 +143,7 @@ export default function Process() {
               index={i} 
               isLeft={i % 2 === 0} 
               lang={lang} 
+              t={t}
             />
           ))}
           
@@ -172,8 +173,8 @@ export default function Process() {
                 <div className="w-8 h-8 rounded-full bg-seal-400 animate-pulse" />
              </div>
              <p className="text-left text-ink-700 dark:text-paper-100 font-medium">
-               <span className="block text-xs uppercase tracking-widest text-ink-400 dark:text-paper-400/60 mb-1">Current Status</span>
-               Your success is in progress with our expert team.
+               <span className="block text-xs uppercase tracking-widest text-ink-400 dark:text-paper-400/60 mb-1">{t.process.statusLabel}</span>
+               {t.process.statusDesc}
              </p>
           </div>
         </motion.div>

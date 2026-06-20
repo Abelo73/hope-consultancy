@@ -16,10 +16,10 @@ export default function Footer() {
   ];
 
   const channels = [
-    { icon: Globe,  href: socials.website,  label: "Website" },
-    { icon: Video,  href: socials.youtube,  label: "YouTube" },
-    { icon: Send,   href: socials.telegram, label: "Telegram" },
-    { icon: Share2, href: socials.facebook, label: "Facebook" },
+    { icon: Globe,  href: socials.website,  label: t.footer.socialLabels.website },
+    { icon: Video,  href: socials.youtube,  label: t.footer.socialLabels.youtube },
+    { icon: Send,   href: socials.telegram, label: t.footer.socialLabels.telegram },
+    { icon: Share2, href: socials.facebook, label: t.footer.socialLabels.facebook },
   ];
 
   return (
@@ -110,14 +110,14 @@ export default function Footer() {
           {/* Trust badge */}
           <div>
             <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-paper-400/80 mb-5">
-              Certified & Licensed
+              {t.footer.certified}
             </div>
             <div className="p-4 rounded-2xl border border-seal-400/20 bg-seal-400/8 space-y-2">
               <div className="text-xs font-bold text-seal-300 uppercase tracking-wide">
-                ✦ Official License
+                ✦ {t.footer.officialLicense}
               </div>
               <div className="text-xs text-paper-300/60 leading-relaxed">
-                Ministry of Labour &amp; Social Affairs Accredited Training Provider in Ethiopia.
+                {t.footer.licenseDesc}
               </div>
             </div>
           </div>
